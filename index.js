@@ -7,7 +7,7 @@ var app = new Vue({
     },
     methods:{
         Hello: function(){
-            return 'HELLO!';
+            return 'HELLO!'+ this.message;
         }
     }
     })
