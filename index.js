@@ -2,12 +2,15 @@ var app = new Vue({
     el: '#app',
     data: {
         message: 'Hello World!',
-        number: 4,
-        OK: true
+        url1: "https://www.google.co.jp/",
+        url2: "https://www.yahoo.co.jp/",
+        title:'<h1>うんこ<h1>'
+        
     },
     methods:{
         Hello: function(){
-            return 'HELLO!'+ this.message;
+            this.message='こんちは'
+            return 'HELLO'
         }
     }
     })

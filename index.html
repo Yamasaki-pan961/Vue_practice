@@ -3,10 +3,11 @@
 
 <body>
     <div id="app">
-        <p>{{message}}</p>
-        <p>{{number + 6}}</p>
-        <p>{{OK ? 'Yes' : 'No'}}</p>
+        <p v-once>{{message}}</p>
         <p>{{Hello()}}</p>
+        <a v-bind:href="url1">Google</a>
+        <a :href="url2">Yahoo</a>
+        <div v-html="title"></div>
         <!-- <p>{{var a=1}}</p> -->
     </div>
     <script src="index.js"></script>
