@@ -1,11 +1,13 @@
 var app = new Vue({
     el: '#app',
     data: {
-        message: 'Hello World!'
+        message: 'Hello World!',
+        number: 4,
+        OK: true
     },
     methods:{
-        reverseMessage: function(){
-            this.message=this.message.split('').reverse().join('')
+        Hello: function(){
+            return 'HELLO!';
         }
     }
     })
