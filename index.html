@@ -6,6 +6,10 @@
     <div id="app">
         <p>{{number}}回クリックされている。</p>
         <button v-on:click='number++'>カウントアップ</button>
-        <p>{{Text1}}</p>
+        <p>{{TextComputed}}</p>
+
+        <p>{{n}}回クリックされている。</p>
+        <button v-on:click='n++'>カウントアップ</button>
+        <p>{{TextMethod()}}</p>
     <script src="index.js"></script>
 </body>
