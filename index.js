@@ -9,7 +9,7 @@ var app = new Vue({
         MousePoint: function(event){
             this.x = event.clientX;
             this.y = event.clientY;
-            
+            prevent
         }
     }
 })
