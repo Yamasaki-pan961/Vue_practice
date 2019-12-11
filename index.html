@@ -3,12 +3,8 @@
 
 <body>
     <div id="app">
-        <p v-once>{{message}}</p>
-        <p>{{Hello()}}</p>
-        <a v-bind:href="url1">Google</a>
-        <a :href="url2">Yahoo</a>
-        <div v-html="title"></div>
-        <!-- <p>{{var a=1}}</p> -->
+        <a v-bind:[attribute]="url1">Google</a>
+        <a v-bind="YahooObject">Yahoo</a>
     </div>
     <script src="index.js"></script>
 </body>
