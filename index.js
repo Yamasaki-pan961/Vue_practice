@@ -6,10 +6,10 @@ var app = new Vue({
     },
 
     methods:{
-        MousePoint: function(event , n){
-            this.x = event.clientX *n;
-            this.y = event.clientY*n;
-
+        MousePoint: function(event){
+            this.x = event.clientX;
+            this.y = event.clientY;
+            
         }
     }
 })

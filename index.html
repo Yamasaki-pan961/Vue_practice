@@ -3,7 +3,8 @@
 
 <body>
     <div id="app">
-        <p v-on:mousemove='MousePoint($event,6)'>マウスを載せて</p>
+        <p v-on:mousemove="MousePoint">マウスを載せて<span v-on:mousemove.stop
+        ="">[ここに載せても無駄です]</span></p>
         <p>X:{{x}}  Y:{{y}}</p>
     </div>
     <script src="index.js"></script>
