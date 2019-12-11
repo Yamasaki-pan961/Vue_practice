@@ -3,11 +3,8 @@
 
 <body>
     <div id="app">
-        <p>{{number}}回クリックされている。</p>
-        <button v-on:click='number++'>カウントアップ</button>
-
-        <p>{{n}}回クリックされている。</p>
-        <button v-on:click='CountUp()'>カウントアップ</button>
+        <p v-on:mousemove='MousePoint'>マウスを載せて</p>
+        <p>X:{{x}}  Y:{{y}}</p>
     </div>
     <script src="index.js"></script>
 </body>
