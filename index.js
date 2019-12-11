@@ -11,10 +11,12 @@ var app = new Vue({
             return this.number > 3 ? '３よりうえ' : '３以下'
         }
     },
-    methods:{
-        TextMethod : function(){
-            console.log("method")
-            return this.number > 3 ? '３よりうえ' : '３以下'
+    watch:{
+        number: function(){
+            var that=this;//なんかthisは使えんから別の奴にする
+            setTimeout(function(){
+                that.number = 0;
+            },3000)
         }
     }
 })
