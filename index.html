@@ -3,8 +3,11 @@
 
 <body>
     <div id="app">
-        <a v-bind:[attribute]="url1">Google</a>
-        <a v-bind="YahooObject">Yahoo</a>
+        <p>{{number}}回クリックされている。</p>
+        <button v-on:click='number++'>カウントアップ</button>
+
+        <p>{{n}}回クリックされている。</p>
+        <button v-on:click='CountUp()'>カウントアップ</button>
     </div>
     <script src="index.js"></script>
 </body>
