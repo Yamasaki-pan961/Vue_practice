@@ -14,9 +14,11 @@ var app = new Vue({
     watch:{
         number: function(){
             var that=this;//なんかthisは使えんから別の奴にする
-            setTimeout(function(){
-                that.number = 0;
-            },3000)
+            if(that.number == 1){
+                setTimeout(function(){
+                    that.number = 0;
+                },3000)
+            }
         }
     }
 })
