@@ -2,12 +2,12 @@
 <script src="../vue.js"></script>
 <body>
     <div id="app">
-        <p v-if="ok">OK=true,Maybe=なんでも <span style="color:red">"OK"</span></p>
-        <p v-else-if="Maybe">OK=false,Maybe=true <span style="color:red">"Maybe"</span></p>
-        <p v-else>OK=false,Maybe=false <span style="color:red">"NO"</span></p>
+        <template v-if="ok">
+            <p style="color:rgb(0, 64, 255)">OK</p>
+            <p style="color:rgb(124, 12, 236)">OK</p>
+            <p style="color:seagreen">OK</p>
+        </template>
         <button v-on:click='ok=!ok'>OK反転{{ok}}</button>
-        <button v-on:click='Maybe=!Maybe'>Maybe反転{{Maybe}}</button>
-        <p>OK={{ok}}  Maybe={{Maybe}}</p>
     </div>
 </body>
 <script src="index.js"></script>
