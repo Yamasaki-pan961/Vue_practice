@@ -3,8 +3,10 @@
 <link rel="stylesheet" href="stylesheet.css">
 <body>
     <div id="app">
-        <h1 :class="{red:isActive, 'bg-blue': !isActive}">HELLO!</h1>
+        <h1 :class="classObject">HELLO!</h1>
         <button v-on:click="isActive = !isActive">切り替え</button>
+        <h1 :class="[color, bg]">HELLO!</h1>
+
     </div>
     <script src="index.js"></script>
 </body>
