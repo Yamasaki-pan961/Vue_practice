@@ -6,7 +6,7 @@
             <li v-for="(aisatu,i) in agree">({{i}}){{aisatu}}</li>
         </ul>
         <ul>
-            <li v-for="(information,i) in object">({{i}}){{information}}</li>
+            <li v-for="(information,i,n) in object">{{n}}({{i}}){{information}}</li>
         </ul>
     </div>
 </body>
