@@ -3,14 +3,14 @@
 <body>
     <div id="app">
         <ul>
-            <template v-for="(aisatu,i) of agree">
+
+            <div v-for="(aisatu,i) of agree">
                 <li>({{i}}){{aisatu}}</li>
+                <input type="text">
                 <hr>
-            </template>
+            </div>
         </ul>
-        <ul>
-            <li v-for="n in 5">{{n}}<hr></li>
-        </ul>
+        <button v-on:click="removeInput">先頭を削除</button>
     </div>
 </body>
 <script src="index.js"></script>

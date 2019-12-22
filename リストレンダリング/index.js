@@ -9,4 +9,9 @@ new Vue({
             ,famliyname:'Yamasaki'
         }
     }
+    ,methods: {
+        removeInput: function(){
+            this.agree.shift();
+        }
+    },
 })
