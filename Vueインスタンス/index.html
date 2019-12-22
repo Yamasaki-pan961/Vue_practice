@@ -3,11 +3,8 @@
 <body>
     <div id="app1">
         <p>{{message}}</p>
-    </div>
-
-    <div id="app2">
-        <p>{{message}}</p>
-        <button v-on:click="changeMessage">インスタンス1のmessage変更</button>
+        <p>{{name}}</p>
+        <button v-on:click="message = '変わったよ'">変更ボタン</button>
     </div>
     <script src="index.js"></script>
 </body>
