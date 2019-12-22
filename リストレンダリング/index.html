@@ -3,10 +3,10 @@
 <body>
     <div id="app">
         <ul>
-            <li v-for="(aisatu,i) in agree">({{i}}){{aisatu}}</li>
-        </ul>
-        <ul>
-            <li v-for="(information,i,n) in object">{{n}}({{i}}){{information}}</li>
+            <template v-for="(aisatu,i) in agree">
+                <li>({{i}}){{aisatu}}</li>
+                <hr>
+            </template>
         </ul>
     </div>
 </body>
