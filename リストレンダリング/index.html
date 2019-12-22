@@ -4,9 +4,9 @@
     <div id="app">
         <ul>
 
-            <div v-for="(aisatu,i) of agree">
+            <div v-for="(aisatu,i) of agree" v-bind:key="aisatu">
                 <li>({{i}}){{aisatu}}</li>
-                <input type="text">
+                <input type="text" v-bind:placeholder="aisatu">
                 <hr>
             </div>
         </ul>
