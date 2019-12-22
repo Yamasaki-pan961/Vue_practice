@@ -1,17 +1,28 @@
 new Vue({
     el:'#app'
     ,data:{
-        agree:　['こんにちは','Hello','カムサハムニダ']
+        greeting:　['こんにちは','Hello','カムサハムニダ']
         ,object:{
-            country: 'Japan'
-            ,age: 19
-            ,firstname:'Ataushi'
-            ,famliyname:'Yamasaki'
+            id:{
+                0:'こんにちは'
+                ,1:'Hello'
+                ,2:'カムサハムニダ'
+                ,3:'こんにちは'
+                ,4:'Hello'
+                ,5:'カムサハムニダ'
+            },
+            n:5
         }
-    }
+        }
     ,methods: {
         removeInput: function(){
-            this.agree.shift();
-        }
-    },
+            Vue.delete(this.object.id,this.object.n);
+            this.object.n--;
+        },
+        addInput: function(){
+            this.object.n++;
+            Vue.set(this.object.id, this.object.n , this.greeting[this.object.n % 3]);
+        } 
+        
+    }
 })

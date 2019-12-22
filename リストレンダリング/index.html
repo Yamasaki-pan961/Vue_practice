@@ -2,15 +2,16 @@
 <script src="../vue.js"></script>
 <body>
     <div id="app">
+        <p>{{object.n}}</p>
         <ul>
-
-            <div v-for="(aisatu,i) of agree" v-bind:key="aisatu">
-                <li>({{i}}){{aisatu}}</li>
-                <input type="text" v-bind:placeholder="aisatu">
+            <div v-for="(value,i) of object.id" v-bind:key="i">
+                <li>{{value}}</li>
+                <input type="text" v-bind:placeholder="i">
                 <hr>
             </div>
         </ul>
-        <button v-on:click="removeInput">先頭を削除</button>
+        <button v-on:click="removeInput">最後削除</button>
+        <button v-on:click="addInput">最後追加</button>
     </div>
 </body>
 <script src="index.js"></script>
