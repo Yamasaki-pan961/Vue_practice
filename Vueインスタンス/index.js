@@ -1,8 +1,12 @@
+var data = {
+    message: 'Hello'
+    ,name:'Atsushi'
+}
+
 var vm = new Vue({
     el:'#app1'
-    ,data:{
-        message:'unko'
-    }
+    ,data:data
 })
-vm.message='かわったよ'
-vm.name =　'やまさき'
+
+console.log(data===vm.$data);
+console.log(vm)
