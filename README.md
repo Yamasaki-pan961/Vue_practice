@@ -18,3 +18,16 @@ https://developer.mozilla.org/ja/docs/Web/Events
 
 VueAPI
 https://jp.vuejs.org/v2/api/
+
+document:ブラウザが用意する変数　中にはHTMLに関するオブジェクトDOMが入っている
+DOM:Document object model 
+
+仮想DOM
+render:function(なんでも){
+    return なんでも('h1','こんにちは');
+    //仮想DOMのために仮想NODEを返している
+}
+
+JavaScriptで
+document.createElement('div');
+//実際にDOMを作っている
