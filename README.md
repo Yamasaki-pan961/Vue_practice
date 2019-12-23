@@ -19,15 +19,23 @@ https://developer.mozilla.org/ja/docs/Web/Events
 VueAPI
 https://jp.vuejs.org/v2/api/
 
+# 仮想DOM
+
 document:ブラウザが用意する変数　中にはHTMLに関するオブジェクトDOMが入っている
 DOM:Document object model 
 
-仮想DOM
 render:function(なんでも){
     return なんでも('h1','こんにちは');
     //仮想DOMのために仮想NODEを返している
 }
+VueJSは仮想DOMを通してDOMを書き換えている
 
 JavaScriptで
 document.createElement('div');
 //実際にDOMを作っている
+
+仮想DOMの必要性
+ブラウザが持つDOMにアクセスするのは時間がかかる
+部分的にDOMを変更するに必要なことは
+現在のDOMと変更後のDOMを比べ、その差が変更するべき箇所である。
+JSにその二つのDOMを仮想的に持たせることによって、DOMへのアクセスを最小限にする
