@@ -4,8 +4,7 @@ var data = {
 }
 
 var vm = new Vue({
-    el:'#app1'
-    ,data:data
+    data:data
     ,computed:{
         Mydata:function(){
             return this.$data;
@@ -13,5 +12,4 @@ var vm = new Vue({
     }
 })
 
-console.log(data===vm.$data);
-console.log(vm)
+vm.$mount('#app1')
