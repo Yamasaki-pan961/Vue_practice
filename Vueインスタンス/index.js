@@ -15,9 +15,8 @@ var vm = new Vue({
 vm.$mount('#app1')
 
 new Vue({
-    el:'#app2'
-    ,data:{
+    data:{
         name:'atsushi'
     }
     ,template:'<h1>{{name}}</h1>'
-})
+}).$mount('#app2')
