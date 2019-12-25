@@ -39,3 +39,17 @@ document.createElement('div');
 部分的にDOMを変更するに必要なことは
 現在のDOMと変更後のDOMを比べ、その差が変更するべき箇所である。
 JSにその二つのDOMを仮想的に持たせることによって、DOMへのアクセスを最小限にする
+
+# VueCLI
+ファイルの分割をできる。
+最終的なコードの軽量化。
+Babel（ESfileのバージョンを合わせる)、TypeScript、ESLintなどのプラグインできる
+HMR(Hot Module Replacement)
+ .vue TS SCSS pug ES6 などの使用
+
+ node.jsをインストールした状態で
+ npm install -g @vue/cli
+
+ vueCLI を使いたいディレクトリで
+ vue create [なまえ]
+ 
