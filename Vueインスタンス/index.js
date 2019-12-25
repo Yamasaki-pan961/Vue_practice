@@ -30,9 +30,43 @@ new Vue({
         return h('h1','こんにちは'+this.name);
     }
 })
+new Vue({
+    el:'#app4',
+    data:{
+        name:'Yamasaki'
+    },
+    beforeCreate: function(){
+        console.log('beforeCreate');
+    },
+    created:function(){
+        console.log('Created');
+    },
+    beforeMount:function(){
+        console.log('beforeMount');
+    },
+    mounted:function(){
+        console.log('mounted');
+    },
+    beforeUpdate:function() {
+        console.log('beforeUpdate');
+    },
+    updated:function(){
+        console.log('updated');
+    },
+    beforeDestroy: function(){
+        console.log('beforeDestroy');
+    },
+    destroyed:function(){
+        console.log('destroyed');
+    },
 
-var dir = document.createElement(div);
-console.log(dir);
-console.dir(dir);
-console.log(document);
-console.dir(document);
+    methods:{
+        destroy_app1:function(){
+            this.$destroy();
+        },
+        changeName:function(){
+            this.name+='変わったよ';
+            console.log('変える処理');
+        }
+    }
+})
