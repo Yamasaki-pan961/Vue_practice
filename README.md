@@ -23,11 +23,12 @@ VueAPI
 
 document:ブラウザが用意する変数　中にはHTMLに関するオブジェクトDOMが入っている
 DOM:Document object model 
-
+```
 render:function(なんでも){
     return なんでも('h1','こんにちは');
     //仮想DOMのために仮想NODEを返している
 }
+```
 VueJSは仮想DOMを通してDOMを書き換えている
 
 JavaScriptで
