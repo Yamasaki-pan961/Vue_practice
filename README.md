@@ -1,9 +1,9 @@
 # Veu
 Vue を学びます
-Vue.js https://jp.vuejs.org/index.html
+Vue.js <https://jp.vuejs.org/index.html>
 CDN:HTMLに直接読み込むとVue.jsが使える
 
-ウェブでHTMLのコードを書くhttps://jsfiddle.net/
+ウェブでHTMLのコードを書く<https://jsfiddle.net/>
 
 vue.jsをダウンロードしそれをHTMLから呼び出すことによってローカルでVueが使える
 
@@ -14,10 +14,10 @@ v-html ディレクデブはクロススクリプティングという脆弱性�
 v-bind　属性値の内容を変数で指定できる。コロンで省略できる。
 
 v-onでつかえるイベント一覧
-https://developer.mozilla.org/ja/docs/Web/Events
+<https://developer.mozilla.org/ja/docs/Web/Events>
 
 VueAPI
-https://jp.vuejs.org/v2/api/
+<https://jp.vuejs.org/v2/api/>
 
 # 仮想DOM
 
@@ -77,4 +77,16 @@ distフォルダをサーバーにおいておくとクライアントにdistフ
 # VueCLIでの実践開発
 コンポーネントを使いVueインスタンスを再利用する。
 Vueインスタンスは普通一回きりしか適応できない。
-コンポーネントのなかではデータは関数
+コンポーネントのなかではデータは関数で定義する。
+コンポーネントが持つデータは同じコンポーネントで共有される。
+動的なデータは共有されるとまずいので、初期値をreturnで書く
+
+コンポーネント内の`template`はタグを入れ子にしなくてはならない
+~~~
+template:'<p>こんにちは</p><hr>' //ダメ
+
+template:'<div><p>こんにちは</p><hr></div>
+~~~
+
+グローバルコンポーネント--> すべてのインスタンスで使えるコンポーネント
+ローカルコンポーネント-->　インスタンスで指定して使うコンポーネント
