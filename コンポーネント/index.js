@@ -1,6 +1,8 @@
 Vue.component('Like',{
-    data:{
-        number:12
+    data:　function(){
+        return{
+            number:12
+        }
     },
     template:'<p>いいね{{number}}</p>'
 })
