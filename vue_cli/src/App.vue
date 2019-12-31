@@ -1,5 +1,10 @@
 <template>
-  <p>いいね{{number}}</p>
+  <div>
+    <Like_show></Like_show>
+    <Like_show></Like_show>
+    <Like_show></Like_show>
+    <Like_show></Like_show>
+  </div>
 </template>
 
 <script>

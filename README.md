@@ -71,10 +71,10 @@ npm run build //package.jsonに定義されているコマンドを呼び出す
 distフォルダが出来上がる
 
 # distフォルダ（最適化されてる）
-publicフォルダ内はそのままコピーされるがsrcフォルダはまとめられる。
-nodeモジュールのプラグイン---> chunk-vendors.~~~.js
-srcフォルダの中身---> app.~~~.js
-cssもミニファイ化（1行で表示される）
+publicフォルダ内はそのままコピーされるがsrcフォルダはまとめられ。<br>
+nodeモジュールのプラグイン---> chunk-vendors.~~~.js<br>
+srcフォルダの中身---> `app.???.js`<br>
+cssもミニファイ化（1行で表示される）<br>
 
 distフォルダをサーバーにおいておくとクライアントにdistフォルダが送信され、ブラウザーが勝手にやってくれる（静的）
 
@@ -93,8 +93,15 @@ template:'<div><p>こんにちは</p><hr></div>
 ~~~
 
 グローバルコンポーネント--> すべてのインスタンスで使えるコンポーネント
+
 ローカルコンポーネント-->　インスタンスで指定して使うコンポーネント
 
+`main.js`で`.vue`ファイルをインポートしグローバル登録する
+```js
+import Like_show form './Like_show.vue'
+
+Vue.component('Like_show',Like_show);
+```
 # VueCLI動作確認
-`npm run serve`でサーバーを起動して確認する
+`npm run serve`でサーバーを起動して確認する<br>
 HTMLファイルを直接プレビューしても動かない
