@@ -1,5 +1,6 @@
 <template>
   <div>
+    <LikeHeader></LikeHeader>
     <Like_show></Like_show>
     <Like_show></Like_show>
     <Like_show></Like_show>
@@ -8,11 +9,11 @@
 </template>
 
 <script>
+import LikeHeader from './LikeHeader.vue'
+
 export default {
-  data:function(){
-    return{
-      number:5
-    }
+  components:{
+    LikeHeader
   }
 }
 </script>

@@ -102,6 +102,15 @@ import Like_show form './Like_show.vue'
 
 Vue.component('Like_show',Like_show);
 ```
+ローカル登録
+```js
+import LikeHeader form './LikeHeader.vue'
+export default{
+    components:{
+        LikeHeader
+    }
+}
+```
 # VueCLI動作確認
 `npm run serve`でサーバーを起動して確認する<br>
 HTMLファイルを直接プレビューしても動かない
