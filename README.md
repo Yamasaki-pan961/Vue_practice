@@ -125,3 +125,13 @@ HTMLファイルを直接プレビューしても動かない
 DOMテンプレート（`public/index.html`とか）はケバブケースに書かなくてはならない。<br>
 ブラウザーが大文字小文字を見分けできない<br>
 ブラウザーはjsよりhtmlを先に読み込むため
+
+# コンポーネントの`<style>`
+すべての`<div>`に適応される
+```css
+<style>
+	div{
+		border:1px solid red;
+	}
+</style>
+```
