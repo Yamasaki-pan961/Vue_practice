@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p>いいね{{number/4}}</p>
+		<p>いいね{{totalNumber/4}}</p>
 		<button v-on:click="number++">+1</button>
 		<hr>	
 	</div>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  props:["number"]
+  props:["totalNumber"]
 }      
 </script>
 

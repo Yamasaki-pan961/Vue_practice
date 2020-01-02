@@ -160,3 +160,7 @@ export default {
 ```html
 <Like_show v-bind:number="number"></Like_show>
 ```
+
+.vueファイルは基本キャメルケース`totalNumber`<br>
+`<template>`内の属性名はケバブケース`total-number`<br>
+で書きましょう

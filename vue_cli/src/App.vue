@@ -2,9 +2,7 @@
   <div>
     <LikeHeader></LikeHeader>
     <h2>{{number}}</h2>
-    <Like_show v-bind:number="number"></Like_show>
-    <Like_show v-bind:number="number"></Like_show>
-    <Like_show v-bind:number="number"></Like_show>
+    <Like_show v-bind:total-number="number"></Like_show>
   </div>
 </template>
 
