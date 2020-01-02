@@ -1,24 +1,266 @@
 # Veu
 Vue を学びます
-Vue.js <https://jp.vuejs.org/index.html>
-CDN:HTMLに直接読み込むとVue.jsが使える
+
+# 準備
+Vue.js <https://jp.vuejs.org/index.html><br>
+CDN:HTMLに直接読み込むとVue.jsが使える<br>
+vue.jsをダウンロードしそれをHTMLから呼び出すことによってローカルでVueが使える
 
 ウェブでHTMLのコードを書く<https://jsfiddle.net/>
 
-vue.jsをダウンロードしそれをHTMLから呼び出すことによってローカルでVueが使える
+# ディレクデブ
+Vueで使える便利機能
 
-v-once 一度だけ表示する
-
-v-html ディレクデブはクロススクリプティングという脆弱性を生む。スクリプトタグなどを埋め込めるため悪用される。
-
-v-bind　属性値の内容を変数で指定できる。コロンで省略できる。
-
-v-onでつかえるイベント一覧
+## `{{}}`
+変数内のデータを表示したりできる。
+```html
+<div id="app">
+    <p>{{message}}</p>
+    <p>{{number + 6}}</p>
+    <p>{{OK ? 'Yes' : 'No'}}</p>
+    <p>{{Hello()}}</p>
+</div>
+```
+```js
+new Vue({
+    el:'#app',
+    data:{
+        message:'Hello World',
+        number:4,
+        OK:true
+    },
+    methods:{
+        Hello:function(){
+            return 'HELLO!';
+        }
+    }
+})
+```
+## `v-on`
+イベント発生時にいろいろできる。
+```html
+<button v-on:click="reverseMessage">メッセージ反転</button>
+<button @click="reverseMessage">メッセージ反転</button>
+```
+イベント一覧
 <https://developer.mozilla.org/ja/docs/Web/Events>
 
-VueAPI
+## `v-once`
+一度だけ表示する（変数の値が変わっても変わらない）
+```html
+<p v-once>{{number}}</p>
+```
+
+## `v-html`
+HTMLタグを埋め込む<br>
+ディレクデブはクロススクリプティングという脆弱性を生む。<br>
+スクリプトタグなどを埋め込めるため悪用される。
+```html
+<div v-html="title"></div>
+```
+```js
+new Vue({
+    el:'#app',
+    data:{
+        title:'<h1>タイトル名<h1>'
+    }
+})
+```
+
+## `v-bind`
+属性値の内容を変数で指定できる
+```html
+<a v-bind:href="url1">Google</a>
+<a :href="url2">Yahoo</a>
+```
+```js
+new Vue({
+    el:'#app',
+    data:{
+        url1: "https://www.google.co.jp/",
+        url2: "https://www.yahoo.co.jp/",
+    }
+```
+## `v-model`
+双方向データ干渉を行う
+```html
+<input type="text" v-model="message">
+<h1>{{message}}</h1>
+```
+```js
+new Vue({
+    el:'#app',
+    data:{
+        message:null
+    }
+})
+```
+
+# VueAPI(修飾子)
 <https://jp.vuejs.org/v2/api/>
 
+## イベント情報の取得
+マウスのの座標を取得する<br>
+HTML側ではイベント引数は省略される
+```html
+<p v-on:mousemove='MousePoint'>マウスを載せて</p>
+```
+
+```js
+new Vue({
+    el:'#app',
+    data:{
+        x:0,
+        y:0
+    },
+    methods:{
+        MousePoint:function(event){
+            this.x=event.clientX;
+            this.y=event.clientY;
+        }
+    }
+})
+```
+複数の引数の場合は省略されない<br>
+イベントの引数は`$event`
+```html
+<p v-on:mousemove='MousePoint($event,6)'>マウスを載せて</p>
+```
+```js
+new Vue({
+    el:'#app',
+    data:{
+        x:0,
+        y:0
+    },
+    methods:{
+        MousePoint: function(event , n){
+            this.x = event.clientX *n;
+            this.y = event.clientY*n;
+        }
+    }
+})
+```
+## 部分的な`v-on`
+`.stop`や`.stopPropagation()`を使う
+```html
+<p v-on:mousemove="MousePoint">マウスを載せて<span v-on:mousemove.stop="">[ここに載せても無駄です]</span></p>
+```
+
+## デフォルトの挙動をさせない
+`.prevent`や`.preventDefault`
+```html
+<a v-on:click.prevent href="https://www.youtube.com/?gl=JP&hl=ja">YouTube</a>
+```
+
+## キーボードに反応させる
+つなげれる修飾子もあればできないやつもある。
+```html
+<input type="text" v-on:keydown.space.enter="myAlert">
+```
+# `computed`プロパティ
+動的な変数に対しての処理を行う<br>
+変数に変更があったときのみ更新処理が行われる<br>
+関数として書く必要がある<br>
+`methods`は描画するたびに実行される
+```html
+<p>{{number}}回クリックされている。</p>
+<button v-on:click='number++'>カウントアップ</button>
+<p>{{Text1}}</p>
+```
+```js
+new Vue({
+    el:'#app',
+    data:{
+        number:0
+    },
+    computed:{
+        Text1:function(){
+            return this.number > 3 ? '３よりうえ':'３いか';
+        }
+    }
+})
+```
+# `watch`プロパティ
+非同期処理ができる<br>
+`this.`が使えんから別の文字に当てよう（ようわからん）
+```html
+<p>{{number}}回クリックされている。</p>
+<button v-on:click='number++'>カウントアップ</button>
+<p>{{TextComputed}}</p>
+```
+```js
+new Vue({
+    el:'#app',
+    data:{
+        number:0
+    },
+    watch:{
+        number:function(){
+            var that=this;
+            setTimeout(function()[
+                that.number=0;
+            ],3000)
+        }
+    }
+})
+```
+# 動的な`class`
+記号を含む変数名は`''`で囲む<br>
+オブジェクトでもクラスを指定できる<br>
+配列でも行ける
+```html
+<h1 :class="{red:isActive, 'bg-blue': !isActive}">HELLO!</h1>
+<h1 :class="classObject">Object</h1>
+<h1 :class="[color, bg]">Array</h1>
+<button v-on:click="isActive = !isActive">切り替え</button>
+```
+```js
+new Vue({
+    el:'#app',
+    data:{
+        isActive:true,
+        color:'red',
+        bg:'bg-blue'
+    },
+    computed:{
+        classObject:function(){
+            return{
+                red:this.isActive,
+                'bg-blue':!this.isActive
+            }
+        }
+    }
+})
+```
+```css
+.red{
+    color:red;
+}
+
+.bg-blue{
+    background-color:blue;
+}
+```
+## 複数のスタイル属性
+配列を使いましょう
+```html
+<h1 :style="[styleObject,baseObject]"> HELLO!</h1>
+```
+```js
+new Vue({
+    el:'#app',
+    data:{
+        styleObject:{
+            color:'red',
+            'background-color':'blue'
+        },
+        baseObject:{
+            'fontSize':'60px'
+        }
+    }
+})
+```
 # 仮想DOM
 
 document:ブラウザが用意する変数　中にはHTMLに関するオブジェクトDOMが入っている
