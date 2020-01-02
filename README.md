@@ -135,3 +135,28 @@ DOMテンプレート（`public/index.html`とか）はケバブケースに書�
 	}
 </style>
 ```
+コンポーネント内のみに適応する
+```css
+<style scoped>
+    div{
+        border:1px solid red;
+    }
+</style>
+```
+
+# コンポーネント間のデータの受け渡し
+### 親-->子<br>
+子側
+```js
+export default {
+  props:["number"]
+}   
+```
+親側（静的）
+```html
+<Like_show number="10"></Like_show>
+```
+親側（動的）
+```html
+<Like_show v-bind:number="number"></Like_show>
+```

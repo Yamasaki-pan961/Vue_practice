@@ -1,10 +1,10 @@
 <template>
   <div>
     <LikeHeader></LikeHeader>
-    <Like_show></Like_show>
-    <Like_show></Like_show>
-    <Like_show></Like_show>
-    <Like_show></Like_show>
+    <h2>{{number}}</h2>
+    <Like_show v-bind:number="number"></Like_show>
+    <Like_show v-bind:number="number"></Like_show>
+    <Like_show v-bind:number="number"></Like_show>
   </div>
 </template>
 
@@ -12,6 +12,11 @@
 import LikeHeader from './components/LikeHeader.vue'
 
 export default {
+  data: function(){
+    return {
+      number:14
+    }
+  },
   components:{
     LikeHeader
   }
@@ -19,7 +24,4 @@ export default {
 </script>
 
 <style>
-  div{
-    border:5px solid blue;
-  }
 </style>
