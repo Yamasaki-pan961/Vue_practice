@@ -18,8 +18,8 @@ export default {
 }
 </script>
 
-<style >
+<style>
   div{
-    border:1px solid blue;
+    border:5px solid blue;
   }
 </style>
