@@ -95,6 +95,95 @@ new Vue({
     }
 })
 ```
+## `v-if`, `v-else`, `v-else-if`
+`else`や`else-if`は`if`タグの直下にある必要がある
+表示切替が少ないやつ向き
+```html
+<p v-if="ok">OK=true</p>
+<p v-else-if="Maybe">maybe</p>
+<p v-else>OK=false</p>
+```
+## `<template>`
+`<div>`を使わずにグループ化できる<br>
+DOMテンプレート要素にならない
+
+## `v-show`
+`else`や`template`は使えない<br>
+表示切替が多いやつ向き<br>
+`css`の`display="none"`を使っている
+```html
+<p v-show="ok" style="color:seagreen">OK</p>
+```
+## `v-for`
+`in`でも`of`でも使える<br>
+繰り返しに使える<br>
+`v-for`は最小限の変更で済むようにふるまう<br>
+```html
+<ul>
+    <li v-for="i in agree">{{i}}</li>
+</ul>
+```
+```js
+new Vue({
+    el:'#app'
+    ,data:{
+        agree:　['こんにちは','Hello','カムサハムニダ']
+    }
+})
+```
+### 定数回繰り返す
+```html
+<ul>
+    <li v-for="n in 5">{{n}}<hr></li>
+</ul>
+```
+### インデックス番号を表示
+```html
+<li v-for="(aisatu,i) in agree">({{i}}){{aisatu}}</li>
+```
+### オブジェクトの表示
+オブジェクトの第三引数はインデックス
+```html
+<ul>
+    <li v-for="(information,i,n) in object">{{n}}({{i}}){{information}}</li>
+</ul>
+```
+```js
+new Vue({
+    el:'#app'
+    ,data:{
+        object:{
+            country:'Japan',
+            age:19,
+            firstname:'Atsushi',
+            filename:'Yamasaki'
+        }
+    }
+})
+```
+
+### `v-for`と`template`の応用
+`template`を使うと切れ目を意識しなくてもよい
+```html
+<ul>
+    <template v-for="(aisatu,i) in agree">
+        <li>({{i}}){{aisatu}}</li>
+        <hr>
+    </template>
+</ul>
+```
+### `key`属性をつける
+変更が最小限で良い挙動しないから付けましょう
+```html
+<div v-for="(aisatu,i) of agree" v-bind:key="aisatu">
+    <input type="text" v-bind:placeholder="aisatu">
+    <hr>
+</div>
+```
+#### Objectを追加する
+```js
+Vue.set(this.object.id, this.object.n , this.greeting[this.object.n % 3]);
+```
 
 # VueAPI(修飾子)
 <https://jp.vuejs.org/v2/api/>
@@ -261,11 +350,85 @@ new Vue({
     }
 })
 ```
-# 仮想DOM
 
-document:ブラウザが用意する変数　中にはHTMLに関するオブジェクトDOMが入っている
-DOM:Document object model 
+# インスタンス操作
+外からVueインスタンスにプロパティを追加するとリアクティブにならない（動的にならずVueの恩恵を受けられない）<br>
+```js
+vm.message='かわったよ'
+vm.name =　'やまさき'
 ```
+
+## VueインスタンスからVueインスタンス
+
+```js
+var vm = new Vue({
+    el:'#app1'
+    ,data:{
+        message:'unko'
+    }
+})
+new Vue({
+    el:'#app2'
+    ,data:{
+        message:'tinko'
+    }
+    ,methods:{
+        changeMessage: function(){
+            vm.message = 'インスタンス2から変更した'
+        }
+    }
+}) 
+```
+
+## `$data`
+`$data`で外から`data`プロパティにアクセスする<br>
+```js
+var data = {
+    message: 'Hello'
+    ,name:'Atsushi'
+}
+var vm=new Vue({
+    el:'#app',
+    data:data
+})
+console.log(data===vm.$data);
+console.log(vm);
+```
+
+## `$mount('')`
+`el`プロパティを後付けする
+```js
+vm.$mount('#app1')
+```
+インスタンスの最後に`$mount`を付ける
+```js
+new Vue({
+    data:{
+        name:'atsushi'
+    },
+    template:'<h1>{{name}}</h1>'
+}).$mount('#app2')
+```
+
+# `template`プロパティ
+中身がHTML要素となる
+```js
+new Vue({
+    el:'#app2'
+    ,data:{
+        name:'atsushi'
+    }
+    ,template:'<h1>{{name}}</h1>'
+})
+```
+
+# 仮想DOM
+`document` : ブラウザが用意する変数<br>
+中にはHTMLに関するオブジェクトDOMが入っている<br>
+`DOM` : Document object model 
+
+## `render`関数
+```js
 render:function(なんでも){
     return なんでも('h1','こんにちは');
     //仮想DOMのために仮想NODEを返している
@@ -273,44 +436,56 @@ render:function(なんでも){
 ```
 VueJSは仮想DOMを通してDOMを書き換えている
 
-JavaScriptで
+JavaScript
+```js
 document.createElement('div');
 //実際にDOMを作っている
+```
 
-## 仮想DOMの必要性
-ブラウザが持つDOMにアクセスするのは時間がかかる
+## 仮想`DOM`の必要性
+ブラウザが持つ`DOM`にアクセスするのは時間がかかる
 
-部分的にDOMを変更するに必要なことは<br>
-現在のDOMと変更後のDOMを比べ、その差が変更するべき箇所である。<br>
+部分的に`DOM`を変更するに必要なことは<br>
+現在の`DOM`と変更後の`DOM`を比べ、その差が変更するべき箇所である。<br>
 JSにその二つのDOMを仮想的に持たせることによって、DOMへのアクセスを最小限にする
 
 # VueCLI
-ファイルの分割をできる。
-最終的なコードの軽量化。
-Babel（ESfileのバージョンを合わせる)、TypeScript、ESLintなどのプラグインできる
-HMR(Hot Module Replacement)
- .vue TS SCSS pug ES6 などの使用
+ファイルの分割をできる。<br>
+最終的なコードの軽量化。<br>
+Babel（ESfileのバージョンを合わせる)、TypeScript、ESLintなどのプラグインできる<br>
+`HMR`(Hot Module Replacement)<br>
+.vue TS SCSS pug ES6 などの使用
 
- node.jsをインストールした状態で
- npm install -g @vue/cli
+node.jsをインストールした状態で
+```cmd
+npm install -g @vue/cli
+```
+vueCLI を使いたいディレクトリで
+```cmd
+vue create [なまえ小文字だけ？]
+```
+### Publicフォルダー
+不変なファイルを入れておく
 
- vueCLI を使いたいディレクトリで
- vue create [なまえ小文字だけ？]
+### srcフォルダー
+中身を結合して一つのJSを作る。
 
-Publicフォルダーは不変なファイルを入れておく
-srcフォルダーの中身を結合して一つのJSを作る。
-
-.vueファイルはシングルファイルコンポ―ネント
-シングルファイルコンポ―ネントの構成
-・テンプレート
-・スクリプト
-・スタイル
-.vueファイルはコンポーネントのオブジェクト（内容）を表している
-.vueファイルはコンポーネントの書き方を変えただけ
+### `.vue`ファイル
+はシングルファイルコンポ―ネント<br>
+## シングルファイルコンポ―ネントの構成
+<ul>
+    <li>テンプレート</li>
+    <li>スクリプト</li>
+    <li>スタイル</li>
+</ul>
+.vueファイルはコンポーネントのオブジェクト（内容）を表している<br>
+.vueファイルはコンポーネントの書き方を変えただけ<br>
 `import`するとオブジェクトをもってる。
 
-VueCLIを本番用でビルドする
+# VueCLIを本番用でビルドする
+```cmd
 npm run build //package.jsonに定義されているコマンドを呼び出す
+```
 distフォルダが出来上がる
 
 # distフォルダ（最適化されてる）
@@ -322,18 +497,18 @@ cssもミニファイ化（1行で表示される）<br>
 distフォルダをサーバーにおいておくとクライアントにdistフォルダが送信され、ブラウザーが勝手にやってくれる（静的）
 
 # VueCLIでの実践開発
-コンポーネントを使いVueインスタンスを再利用する。
-Vueインスタンスは普通一回きりしか適応できない。
-コンポーネントのなかではデータは関数で定義する。
-コンポーネントが持つデータは同じコンポーネントで共有される。
-動的なデータは共有されるとまずいので、初期値をreturnで書く
+コンポーネントを使いVueインスタンスを再利用する。<br>
+Vueインスタンスは普通一回きりしか適応できない。<br>
+コンポーネントのなかではデータは関数で定義する。<br>
+コンポーネントが持つデータは同じコンポーネントで共有される。<br>
+動的なデータは共有されるとまずいので、初期値をreturnで書く<br>
 
 コンポーネント内の`template`はタグを入れ子にしなくてはならない
-~~~
+```js
 template:'<p>こんにちは</p><hr>' //ダメ
 
 template:'<div><p>こんにちは</p><hr></div>
-~~~
+```
 
 グローバルコンポーネント--> すべてのインスタンスで使えるコンポーネント
 
