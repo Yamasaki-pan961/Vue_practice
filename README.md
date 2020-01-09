@@ -569,6 +569,29 @@ export default {
   props:["number"]
 }   
 ```
+objet形式　変数名:型名
+```js
+export default{
+    props:{
+        number:Number
+    }
+}
+```
+型をつけることをバリデーションという
+<br>
+いろんな型
+```js
+export default{
+    props:{
+        number:{
+            type:Number,//型の宣言
+            required:true,//この変数に値が必ず必要か
+            default:10//値がなかった時の値を設定する。
+            //defaultとrequiredは共存できない
+        }
+    }
+}
+```
 親側（静的）
 ```html
 <Like_show number="10"></Like_show>
